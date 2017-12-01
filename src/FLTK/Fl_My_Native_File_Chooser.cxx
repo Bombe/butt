@@ -24,6 +24,7 @@
 // Use Apple's chooser
 #ifdef __APPLE__
 #include "FL/Fl_My_Native_File_Chooser.H"
+#include "Fl_My_Native_File_Chooser_MAC.mm"
 #endif
 
 // All else falls back to FLTK's own chooser
