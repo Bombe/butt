@@ -2062,6 +2062,13 @@ void choice_cfg_dev_cb(void)
     unsaved_changes = 1;
 }
 
+void choice_cfg_source_channel_cb(void)
+{
+    cfg.audio.channels = fl_g->choice_cfg_source_channel->value() * 2 + 2;
+    snd_reinit();
+    unsaved_changes = 1;
+}
+
 void choice_cfg_codec_mp3_cb(void)
 {
     if(lame_enc_reinit(&lame_stream) != 0)

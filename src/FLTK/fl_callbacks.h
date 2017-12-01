@@ -29,6 +29,7 @@ void button_info_cb(void);
 void button_record_cb(void);
 void button_connect_cb(void);
 void choice_cfg_dev_cb(void);
+void choice_cfg_source_channel_cb(void);
 void button_disconnect_cb(void);
 void button_add_icy_add_cb(void);
 void button_cfg_del_srv_cb(void);

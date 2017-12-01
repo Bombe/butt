@@ -526,6 +526,13 @@ void flgui::cb_choice_cfg_samplerate(Fl_Choice* o, void* v) {
   ((flgui*)(o->parent()->parent()->parent()->parent()->user_data()))->cb_choice_cfg_samplerate_i(o,v);
 }
 
+void flgui::cb_choice_cfg_source_channel_i(Fl_Choice*, void*) {
+  choice_cfg_source_channel_cb();
+}
+void flgui::cb_choice_cfg_source_channel(Fl_Choice* o, void* v) {
+  ((flgui*)(o->parent()->parent()->parent()->parent()->user_data()))->cb_choice_cfg_source_channel_i(o,v);
+}
+
 void flgui::cb_MP3_i(Fl_Menu_*, void*) {
   choice_cfg_codec_mp3_cb();
 }
@@ -1175,7 +1182,6 @@ flgui::flgui() {
       Settings->selection_color((Fl_Color)41);
       { Fl_Group* o = new Fl_Group(11, 30, 300, 370, "Main");
         o->when(FL_WHEN_RELEASE_ALWAYS);
-        o->hide();
         { Fl_Group* o = new Fl_Group(26, 65, 265, 140, "Server Settings");
           o->box(FL_ENGRAVED_FRAME);
           o->align(Fl_Align(FL_ALIGN_TOP_LEFT));
@@ -1261,6 +1267,7 @@ flgui::flgui() {
         o->end();
       } // Fl_Group* o
       { Fl_Group* o = new Fl_Group(11, 29, 300, 469, "Audio");
+        o->hide();
         { Fl_Group* o = new Fl_Group(26, 65, 265, 140, "Main Audio Settings");
           o->box(FL_ENGRAVED_FRAME);
           o->align(Fl_Align(FL_ALIGN_TOP_LEFT));
@@ -1285,6 +1292,7 @@ flgui::flgui() {
           } // Fl_Choice* choice_cfg_samplerate
           { choice_cfg_source_channel = new Fl_Choice(34, 174, 114, 20, "Source Channel");
             choice_cfg_source_channel->down_box(FL_BORDER_BOX);
+            choice_cfg_source_channel->callback((Fl_Callback*)cb_choice_cfg_source_channel);
             choice_cfg_source_channel->align(Fl_Align(FL_ALIGN_TOP_LEFT));
           } // Fl_Choice* choice_cfg_source_channel
           o->end();

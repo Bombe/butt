@@ -180,6 +180,10 @@ private:
   static void cb_choice_cfg_samplerate(Fl_Choice*, void*);
 public:
   Fl_Choice *choice_cfg_source_channel;
+private:
+  inline void cb_choice_cfg_source_channel_i(Fl_Choice*, void*);
+  static void cb_choice_cfg_source_channel(Fl_Choice*, void*);
+public:
   Fl_Choice *choice_cfg_codec;
   static Fl_Menu_Item menu_choice_cfg_codec[];
 private:

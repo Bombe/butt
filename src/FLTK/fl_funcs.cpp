@@ -51,6 +51,7 @@ void fill_cfg_widgets(void)
         fl_g->choice_cfg_dev->add(cfg.audio.pcm_list[i]->name);
 
     fl_g->choice_cfg_dev->value(cfg.audio.dev_num);
+    fl_g->choice_cfg_source_channel->value(cfg.audio.channels / 2 - 1);
 
     fl_g->choice_cfg_act_srv->clear();
     fl_g->choice_cfg_act_srv->redraw();
@@ -212,9 +213,13 @@ void update_samplerates(void)
     fl_g->choice_cfg_source_channel->clear();
     for(i = 0; i < cfg.audio.pcm_list[cfg.audio.dev_num]->num_of_channels; i += 2)
     {
+        // we list channels as starting with 1, in stereo pairs only
         snprintf(sr_asc, 10, "%d \\/ %d", i + 1, i + 2);
         fl_g->choice_cfg_source_channel->add(sr_asc);
-        fl_g->choice_cfg_source_channel->value(i);
+        // cfg.audio.channels is the number of channels we have to read
+        // but the value of the choice box is 0-based consecutive
+        if (cfg.audio.channels == (i + 2))
+            fl_g->choice_cfg_source_channel->value(i/2);
     }
 }
 

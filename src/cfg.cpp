@@ -113,6 +113,7 @@ int cfg_write_file(char *path)
             "samplerate = %d\n"
             "bitrate = %d\n"
             "channel = %d\n"
+            "channels = %d\n"
             "codec = %s\n"
             "aac_overwrite_aot = %d\n"
             "aac_aot = %d\n"
@@ -122,6 +123,7 @@ int cfg_write_file(char *path)
             cfg.audio.samplerate,
             cfg.audio.bitrate,
             cfg.audio.channel,
+            cfg.audio.channels,
             cfg.audio.codec,
             cfg.audio.aac_overwrite_aot,
             cfg.audio.aac_aot,
@@ -258,6 +260,7 @@ int cfg_set_values(char *path)
     cfg.audio.resolution = 16;
     cfg.audio.bitrate    = cfg_get_int("audio", "bitrate");
     cfg.audio.channel    = cfg_get_int("audio", "channel");
+    cfg.audio.channels   = cfg_get_int("audio", "channels");
     cfg.audio.codec      = cfg_get_str("audio", "codec");
     cfg.audio.buffer_ms  = cfg_get_int("audio", "buffer_ms");
     cfg.audio.aac_aot    = cfg_get_int("audio", "aac_aot");
@@ -278,6 +281,8 @@ int cfg_set_values(char *path)
     if(cfg.audio.channel == -1)
         cfg.audio.channel = 2;
 
+    if(cfg.audio.channels == -1)
+        cfg.audio.channels = 2;
 
     if(cfg.audio.codec == NULL)
     {
@@ -598,6 +603,7 @@ int cfg_create_default(void)
             "samplerate = 44100\n"
             "bitrate = 128\n"
             "channel = 2\n"
+            "channels = 2\n"
             "codec = mp3\n"
             "resample_mode = 0\n" //SRC_SINC_BEST_QUALITY
             "aac_aot = 5\n" // aac+ v1

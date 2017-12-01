@@ -99,6 +99,7 @@ typedef struct
         int samplerate;
         int resolution;
         int channel;
+        int channels; // the number of channels to read from which we record/stream the last two
         int bitrate;
         int buffer_ms;
         int resample_mode;

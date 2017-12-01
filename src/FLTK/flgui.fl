@@ -175,7 +175,7 @@ class flgui {open
           }
         }
       }
-      Fl_Text_Display info_output {
+      Fl_Text_Display info_output {selected
         xywh {0 195 430 184} box EMBOSSED_BOX textfont 4 textsize 15 resizable
       }
       Fl_Button button_cfg {
@@ -215,8 +215,8 @@ button_cfg->label("Settings@>");} open
         xywh {10 10 301 488} selection_color 41
       } {
         Fl_Group {} {
-          label Main open
-          xywh {11 30 300 370} when 6 hide
+          label Main
+          xywh {11 30 300 370} when 6
         } {
           Fl_Group {} {
             label {Server Settings} open
@@ -299,10 +299,10 @@ button_cfg->label("Settings@>");} open
         }
         Fl_Group {} {
           label Audio open
-          xywh {11 29 300 469}
+          xywh {11 29 300 469} hide
         } {
           Fl_Group {} {
-            label {Main Audio Settings}
+            label {Main Audio Settings} open
             xywh {26 65 265 140} box ENGRAVED_FRAME align 5
           } {
             Fl_Choice choice_cfg_dev {
@@ -331,7 +331,8 @@ button_cfg->label("Settings@>");} open
               tooltip {Select input sample rate} xywh {169 134 115 20} down_box BORDER_BOX align 5
             } {}
             Fl_Choice choice_cfg_source_channel {
-              label {Source Channel} open selected
+              label {Source Channel}
+              callback {choice_cfg_source_channel_cb();} open
               xywh {34 174 114 20} down_box BORDER_BOX align 5
             } {}
           }

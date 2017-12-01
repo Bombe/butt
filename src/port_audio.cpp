@@ -152,7 +152,15 @@ int snd_open_stream(void)
     }
 
     pa_params.device = pa_dev_id;
-    pa_params.channelCount = cfg.audio.channel;
+    if (cfg.audio.channels > pa_dev_info->maxInputChannels)
+    {
+        cfg.audio.channels = 2;
+        pa_params.channelCount = cfg.audio.channel;
+    }
+    else
+    {
+        pa_params.channelCount = cfg.audio.channels;
+    }
     pa_params.sampleFormat = paInt16;
     pa_params.suggestedLatency = pa_dev_info->defaultHighInputLatency;
     pa_params.hostApiSpecificStreamInfo = NULL;
@@ -524,8 +532,17 @@ int snd_callback(const void *input,
     char stream_buf[16 * pa_frames*2 * sizeof(short)];
     char record_buf[16 * pa_frames*2 * sizeof(short)];
 
-
-    memcpy(pa_pcm_buf, input, frameCount*cfg.audio.channel*sizeof(short));
+    if (cfg.audio.channels > 2)
+    {
+        for(i = 0; i < frameCount; i++)
+        {
+            memcpy(&pa_pcm_buf[i * cfg.audio.channel], &((short*)input)[i * cfg.audio.channels + (cfg.audio.channels - cfg.audio.channel)], cfg.audio.channel*sizeof(short));
+        }
+    }
+    else
+    {
+        memcpy(pa_pcm_buf, input, frameCount*cfg.audio.channel*sizeof(short));
+    }
     samplerate_out = cfg.audio.samplerate;
 
     if (cfg.main.gain != 1)
