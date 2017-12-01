@@ -184,6 +184,7 @@ void fill_cfg_widgets(void)
 
 //Updates the samplerate drop down menu for the audio
 //device the user has selected
+// this does not only update the sample rates but also the input channels
 void update_samplerates(void)
 {
     int i;
@@ -206,6 +207,14 @@ void update_samplerates(void)
     {
         fl_g->choice_cfg_samplerate->add("dev. not supported");
         fl_g->choice_cfg_samplerate->value(0);
+    }
+
+    fl_g->choice_cfg_source_channel->clear();
+    for(i = 0; i < cfg.audio.pcm_list[cfg.audio.dev_num]->num_of_channels; i += 2)
+    {
+        snprintf(sr_asc, 10, "%d \\/ %d", i + 1, i + 2);
+        fl_g->choice_cfg_source_channel->add(sr_asc);
+        fl_g->choice_cfg_source_channel->value(i);
     }
 }
 

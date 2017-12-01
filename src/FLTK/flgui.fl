@@ -207,12 +207,12 @@ class flgui {open
       label {butt settings}
       callback {window_cfg->hide();
 button_cfg->label("Settings@>");} open
-      xywh {1097 131 324 464} type Double
+      xywh {1106 123 324 511} type Double
       code0 {\#include "FL/Fl_My_Double_Window.H"}
       class Fl_My_Double_Window visible
     } {
       Fl_Tabs Settings {open
-        xywh {10 10 301 442} selection_color 41
+        xywh {10 10 301 488} selection_color 41
       } {
         Fl_Group {} {
           label Main open
@@ -299,11 +299,11 @@ button_cfg->label("Settings@>");} open
         }
         Fl_Group {} {
           label Audio open
-          xywh {11 29 300 423}
+          xywh {11 29 300 469}
         } {
           Fl_Group {} {
-            label {Main Audio Settings} open
-            xywh {26 65 265 100} box ENGRAVED_FRAME align 5
+            label {Main Audio Settings}
+            xywh {26 65 265 140} box ENGRAVED_FRAME align 5
           } {
             Fl_Choice choice_cfg_dev {
               label {Audio Device}
@@ -330,14 +330,18 @@ button_cfg->label("Settings@>");} open
               callback {choice_cfg_samplerate_cb();} open
               tooltip {Select input sample rate} xywh {169 134 115 20} down_box BORDER_BOX align 5
             } {}
+            Fl_Choice choice_cfg_source_channel {
+              label {Source Channel} open selected
+              xywh {34 174 114 20} down_box BORDER_BOX align 5
+            } {}
           }
           Fl_Group {} {
-            label Streaming open
-            xywh {26 189 265 60} box ENGRAVED_FRAME align 5
+            label Streaming
+            xywh {26 235 265 60} box ENGRAVED_FRAME align 5
           } {
             Fl_Choice choice_cfg_codec {
               label Codec open
-              tooltip {Select streaming codec} xywh {31 217 125 20} box ENGRAVED_BOX down_box BORDER_BOX align 5
+              tooltip {Select streaming codec} xywh {31 263 125 20} box ENGRAVED_BOX down_box BORDER_BOX align 5
             } {
               MenuItem {} {
                 label MP3
@@ -363,7 +367,7 @@ button_cfg->label("Settings@>");} open
             Fl_Choice choice_cfg_bitrate {
               label Bitrate
               callback {choice_cfg_bitrate_cb();}
-              tooltip {Select streaming bitrate} xywh {171 217 115 20} box ENGRAVED_BOX down_box BORDER_BOX align 5
+              tooltip {Select streaming bitrate} xywh {171 263 115 20} box ENGRAVED_BOX down_box BORDER_BOX align 5
             } {
               MenuItem {} {
                 label 8k
@@ -436,12 +440,12 @@ button_cfg->label("Settings@>");} open
             }
           }
           Fl_Group {} {
-            label Recording open
-            xywh {26 276 265 60} box ENGRAVED_FRAME align 5
+            label Recording
+            xywh {26 325 265 60} box ENGRAVED_FRAME align 5
           } {
             Fl_Choice choice_rec_codec {
               label Codec open
-              tooltip {Select recording codec} xywh {31 305 125 20} box ENGRAVED_BOX down_box BORDER_BOX align 5
+              tooltip {Select recording codec} xywh {31 354 125 20} box ENGRAVED_BOX down_box BORDER_BOX align 5
             } {
               MenuItem {} {
                 label MP3
@@ -477,7 +481,7 @@ button_cfg->label("Settings@>");} open
             Fl_Choice choice_rec_bitrate {
               label Bitrate
               callback {choice_rec_bitrate_cb();} open
-              tooltip {Select recording bitrate} xywh {171 305 115 20} down_box BORDER_BOX align 5
+              tooltip {Select recording bitrate} xywh {171 354 115 20} down_box BORDER_BOX align 5
             } {
               MenuItem {} {
                 label 8k
@@ -562,18 +566,18 @@ if (!show_advanced) {
 	fl_g->choice_cfg_resample_mode->hide();
 	show_advanced = 0;
 	fl_g->button_advanced->label("Advanced...");
-}} selected
-            xywh {26 355 89 25} box ENGRAVED_BOX
+}}
+            xywh {26 405 89 25} box ENGRAVED_BOX
           }
           Fl_Value_Input input_cfg_buffer {
             label {Buffer (ms)}
             callback {input_cfg_buffer_cb(1);}
-            xywh {26 415 75 20} align 5 when 8 maximum 0 value 50 hide
+            xywh {26 460 75 20} align 5 when 8 maximum 0 value 50 hide
           }
           Fl_Choice choice_cfg_resample_mode {
             label {Resample Quality}
             callback {choice_cfg_resample_mode_cb();}
-            xywh {166 415 125 20} down_box BORDER_BOX align 5 hide
+            xywh {166 460 125 20} down_box BORDER_BOX align 5 hide
           } {
             MenuItem {} {
               label SINC_BEST

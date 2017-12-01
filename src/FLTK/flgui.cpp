@@ -1160,7 +1160,7 @@ flgui::flgui() {
     window_main->size_range(430, 155, 430);
     window_main->end();
   } // Fl_My_Double_Window* window_main
-  { window_cfg = new Fl_My_Double_Window(324, 464, "butt settings");
+  { window_cfg = new Fl_My_Double_Window(324, 511, "butt settings");
     window_cfg->box(FL_FLAT_BOX);
     window_cfg->color(FL_BACKGROUND_COLOR);
     window_cfg->selection_color(FL_BACKGROUND_COLOR);
@@ -1171,7 +1171,7 @@ flgui::flgui() {
     window_cfg->callback((Fl_Callback*)cb_window_cfg, (void*)(this));
     window_cfg->align(Fl_Align(FL_ALIGN_TOP));
     window_cfg->when(FL_WHEN_RELEASE);
-    { Settings = new Fl_Tabs(10, 10, 301, 442);
+    { Settings = new Fl_Tabs(10, 10, 301, 488);
       Settings->selection_color((Fl_Color)41);
       { Fl_Group* o = new Fl_Group(11, 30, 300, 370, "Main");
         o->when(FL_WHEN_RELEASE_ALWAYS);
@@ -1260,8 +1260,8 @@ flgui::flgui() {
         } // Fl_Group* o
         o->end();
       } // Fl_Group* o
-      { Fl_Group* o = new Fl_Group(11, 29, 300, 423, "Audio");
-        { Fl_Group* o = new Fl_Group(26, 65, 265, 100, "Main Audio Settings");
+      { Fl_Group* o = new Fl_Group(11, 29, 300, 469, "Audio");
+        { Fl_Group* o = new Fl_Group(26, 65, 265, 140, "Main Audio Settings");
           o->box(FL_ENGRAVED_FRAME);
           o->align(Fl_Align(FL_ALIGN_TOP_LEFT));
           { choice_cfg_dev = new Fl_Choice(34, 94, 250, 20, "Audio Device");
@@ -1283,19 +1283,23 @@ flgui::flgui() {
             choice_cfg_samplerate->callback((Fl_Callback*)cb_choice_cfg_samplerate);
             choice_cfg_samplerate->align(Fl_Align(FL_ALIGN_TOP_LEFT));
           } // Fl_Choice* choice_cfg_samplerate
+          { choice_cfg_source_channel = new Fl_Choice(34, 174, 114, 20, "Source Channel");
+            choice_cfg_source_channel->down_box(FL_BORDER_BOX);
+            choice_cfg_source_channel->align(Fl_Align(FL_ALIGN_TOP_LEFT));
+          } // Fl_Choice* choice_cfg_source_channel
           o->end();
         } // Fl_Group* o
-        { Fl_Group* o = new Fl_Group(26, 189, 265, 60, "Streaming");
+        { Fl_Group* o = new Fl_Group(26, 235, 265, 60, "Streaming");
           o->box(FL_ENGRAVED_FRAME);
           o->align(Fl_Align(FL_ALIGN_TOP_LEFT));
-          { choice_cfg_codec = new Fl_Choice(31, 217, 125, 20, "Codec");
+          { choice_cfg_codec = new Fl_Choice(31, 263, 125, 20, "Codec");
             choice_cfg_codec->tooltip("Select streaming codec");
             choice_cfg_codec->box(FL_ENGRAVED_BOX);
             choice_cfg_codec->down_box(FL_BORDER_BOX);
             choice_cfg_codec->align(Fl_Align(FL_ALIGN_TOP_LEFT));
             choice_cfg_codec->menu(menu_choice_cfg_codec);
           } // Fl_Choice* choice_cfg_codec
-          { choice_cfg_bitrate = new Fl_Choice(171, 217, 115, 20, "Bitrate");
+          { choice_cfg_bitrate = new Fl_Choice(171, 263, 115, 20, "Bitrate");
             choice_cfg_bitrate->tooltip("Select streaming bitrate");
             choice_cfg_bitrate->box(FL_ENGRAVED_BOX);
             choice_cfg_bitrate->down_box(FL_BORDER_BOX);
@@ -1305,17 +1309,17 @@ flgui::flgui() {
           } // Fl_Choice* choice_cfg_bitrate
           o->end();
         } // Fl_Group* o
-        { Fl_Group* o = new Fl_Group(26, 276, 265, 60, "Recording");
+        { Fl_Group* o = new Fl_Group(26, 325, 265, 60, "Recording");
           o->box(FL_ENGRAVED_FRAME);
           o->align(Fl_Align(FL_ALIGN_TOP_LEFT));
-          { choice_rec_codec = new Fl_Choice(31, 305, 125, 20, "Codec");
+          { choice_rec_codec = new Fl_Choice(31, 354, 125, 20, "Codec");
             choice_rec_codec->tooltip("Select recording codec");
             choice_rec_codec->box(FL_ENGRAVED_BOX);
             choice_rec_codec->down_box(FL_BORDER_BOX);
             choice_rec_codec->align(Fl_Align(FL_ALIGN_TOP_LEFT));
             choice_rec_codec->menu(menu_choice_rec_codec);
           } // Fl_Choice* choice_rec_codec
-          { choice_rec_bitrate = new Fl_Choice(171, 305, 115, 20, "Bitrate");
+          { choice_rec_bitrate = new Fl_Choice(171, 354, 115, 20, "Bitrate");
             choice_rec_bitrate->tooltip("Select recording bitrate");
             choice_rec_bitrate->down_box(FL_BORDER_BOX);
             choice_rec_bitrate->callback((Fl_Callback*)cb_choice_rec_bitrate);
@@ -1324,11 +1328,11 @@ flgui::flgui() {
           } // Fl_Choice* choice_rec_bitrate
           o->end();
         } // Fl_Group* o
-        { button_advanced = new Fl_Button(26, 355, 89, 25, "Advanced...");
+        { button_advanced = new Fl_Button(26, 405, 89, 25, "Advanced...");
           button_advanced->box(FL_ENGRAVED_BOX);
           button_advanced->callback((Fl_Callback*)cb_button_advanced);
         } // Fl_Button* button_advanced
-        { input_cfg_buffer = new Fl_Value_Input(26, 415, 75, 20, "Buffer (ms)");
+        { input_cfg_buffer = new Fl_Value_Input(26, 460, 75, 20, "Buffer (ms)");
           input_cfg_buffer->maximum(0);
           input_cfg_buffer->value(50);
           input_cfg_buffer->callback((Fl_Callback*)cb_input_cfg_buffer);
@@ -1336,7 +1340,7 @@ flgui::flgui() {
           input_cfg_buffer->when(FL_WHEN_ENTER_KEY);
           input_cfg_buffer->hide();
         } // Fl_Value_Input* input_cfg_buffer
-        { choice_cfg_resample_mode = new Fl_Choice(166, 415, 125, 20, "Resample Quality");
+        { choice_cfg_resample_mode = new Fl_Choice(166, 460, 125, 20, "Resample Quality");
           choice_cfg_resample_mode->down_box(FL_BORDER_BOX);
           choice_cfg_resample_mode->callback((Fl_Callback*)cb_choice_cfg_resample_mode);
           choice_cfg_resample_mode->align(Fl_Align(FL_ALIGN_TOP_LEFT));

@@ -29,7 +29,7 @@ typedef struct
     int dev_id;
     int sr_list[10]; //8000, 11025, 12000, 16000, 22050, 24000, 32000, 44100, 48000, 0
     int num_of_sr;
-
+    int num_of_channels;
 }snd_dev_t;
 
 enum {

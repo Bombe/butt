@@ -696,6 +696,7 @@ snd_dev_t **snd_get_devices(int *dev_count)
             continue;
         
         dev_list[dev_num]->num_of_sr = sr_count;
+        dev_list[dev_num]->num_of_channels = p_di->maxInputChannels;
 
         //Mark the end of the samplerate list for this device with a 0
         dev_list[dev_num]->sr_list[sr_count] = 0;
